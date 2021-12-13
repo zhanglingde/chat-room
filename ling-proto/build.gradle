@@ -1,0 +1,12 @@
+plugins {
+    id "com.google.protobuf" version "0.8.12"
+}
+
+protobuf {
+    generatedFilesBaseDir = "$projectDir/src/"
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies["protobuf"]
+    implementation rootProject.ext.dependencies["guava"]
+}
