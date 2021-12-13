@@ -2,9 +2,34 @@ plugins {
     id "com.google.protobuf" version "0.8.12"
 }
 
+// protobuf 生成器
 protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
     generatedFilesBaseDir = "$projectDir/src/"
 }
+// https://github.com/google/protobuf-gradle-plugin/issues/113
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:3.0.0"
+//    }
+//    plugins {
+//        lite {
+//            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
+//        }
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                remove java
+//            }
+//            task.plugins {
+//                lite { }
+//            }
+//        }
+//    }
+//}
 
 dependencies {
     implementation rootProject.ext.dependencies["protobuf"]

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+// 以 option 设置的包名为准
+package proto;
+
+// 生成多个 java 类（false 内部类方式）
+option java_multiple_files = false;
+// 包名
+option java_package = "com.ling.proto";
+// java 文件名（最外部类名）
+option java_outer_classname = "Command";
+option optimize_for = SPEED;
+//option objc_class_prefix = "HLW";
+
+
+
+// 结果
+message ResultMessage{
+  int32 code = 1;
+  string msg = 2;
+}
+
+// 消息包，可以是请求包，可以是响应包
+message Package{
+  // 结果
+  ResultMessage resultMsg = 1;
+  // 指令类型
+  int32 cmdType = 2;
+  // 内容的二进制
+  bytes content = 3;
+}
+
+// 多个消息包，网络协议中的封包（多个消息包一次传输）
+message PackageGroup{
+  repeated Package packages = 1;
+}
